@@ -11,6 +11,13 @@ export class AuthService {
 	async register({ email, password }: IEmailPwd) {
 		try {
 			const user = await createUserWithEmailAndPassword(this.auth, email, password);
+			/*
+			get userService
+			create myUser
+			set myUser id from auth
+			set myUser
+			save myUser
+			*/
 			return user;
 		} catch (e) {
 			return null;

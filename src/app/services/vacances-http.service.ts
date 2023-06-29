@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { IVacanca } from '../models/interfaces';
+import { HttpClient } from '@angular/common/http';
+import { VacancaCollection } from '../models/vacanca';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VacancesHttpService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   getVacances(): Observable<IVacanca[]> {
+    return this.httpClient.get<IVacanca[]>('http://demo6402609.mockable.io/vacances').pipe(map((vacances: IVacanca[]) => {
+      return new VacancaCollection(vacances);
+    }));
   }
 
-  getVacancaById(id: string): Observable<IVacanca> {
-  }
+  // getVacancaById(id: string): Observable<IVacanca> {
+  // }
 
   addVacanca(vacanca: IVacanca) {
   }

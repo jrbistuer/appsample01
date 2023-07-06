@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-tab1',
@@ -9,10 +10,22 @@ import { Router } from '@angular/router';
 })
 export class Tab1Page {
 
+  lorem: string = '';
+  param = {user: 'Ramon'};
+
   constructor(
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {}
+
+  ionViewWillEnter() {
+    // this.lorem = this.translateService.instant("GENERAL.UTILS.loremipsum");
+
+    this.translateService.get("GENERAL.UTILS.loremipsum").subscribe((txt) => {
+      this.lorem = txt;
+    });
+  }
 
   logout() {
     console.log('logging out');

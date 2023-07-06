@@ -18,8 +18,14 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-button expand="block" shape="round" routerLink="home">Go to Home</ion-button>
+  <h1>{{ "GENERAL.UTILS.holauser" | translate:param}}</h1>
 
-  <ion-button expand="block" shape="round" routerLink="/login">Go to Login</ion-button>
+  <ion-button expand="block" shape="round" routerLink="home">{{ "GENERAL.BUTTONS.gotohome" | translate}}</ion-button>
+
+  <ion-button expand="block" shape="round" routerLink="/login" [translate]="'GENERAL.BUTTONS.gotologin'"></ion-button>
+
+  <div>
+    {{lorem}}
+  </div>
 
 </ion-content>

@@ -1,0 +1,12 @@
+{
+    "GENERAL": {
+        "BUTTONS": {
+            "gotohome": "Anar a la home",
+            "gotologin": "Anar al login"
+        },
+        "UTILS": {
+            "loremipsum": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus dapibus lacinia. Aliquam rhoncus magna ut iaculis pretium. Aenean a sapien at lacus blandit vulputate ac ut sapien. Vestibulum rutrum scelerisque urna et venenatis. Nam dui odio, vulputate eget ligula vulputate, mollis fringilla metus. Nunc egestas interdum sapien, nec interdum eros tempus nec. Suspendisse potenti. Proin a leo et magna egestas bibendum. Ut odio velit, faucibus nec scelerisque venenatis, sollicitudin vel nulla",
+            "holauser": "Hola {{user}}"
+        }
+    }
+}

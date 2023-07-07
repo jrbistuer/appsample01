@@ -6,7 +6,19 @@
 
 <ion-content class="ion-padding">
 
-	<form (ngSubmit)="login()" [formGroup]="credentials" *ngIf="credentials">
+	<form [formGroup]="credentials" *ngIf="credentials">
+		<ion-item fill="solid" class="ion-margin-bottom">
+			<ion-input type="nom" placeholder="Nom" formControlName="nom"></ion-input>
+			<ion-note slot="error" *ngIf="(nom!.dirty || nom!.touched) && nom!.errors"
+				>Nom is invalid</ion-note
+			>
+		</ion-item>
+		<ion-item fill="solid" class="ion-margin-bottom">
+			<ion-input type="cognom" placeholder="cognom" formControlName="cognom"></ion-input>
+			<ion-note slot="error" *ngIf="(cognom!.dirty || cognom!.touched) && cognom!.errors"
+				>Cognom is invalid</ion-note
+			>
+		</ion-item>
 		<ion-item fill="solid" class="ion-margin-bottom">
 			<ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
 			<ion-note slot="error" *ngIf="(email!.dirty || email!.touched) && email!.errors"
@@ -20,10 +32,9 @@
 			>
 		</ion-item>
 
-		<ion-button type="submit" expand="block" [disabled]="!credentials.valid">Log in</ion-button>
 		<ion-button type="button" expand="block" color="secondary" (click)="register()"
-			>Create account</ion-button
-		>
-	</form>
+			>Create account</ion-button>
+
+    </form>
 
 </ion-content>

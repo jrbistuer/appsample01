@@ -11,3 +11,12 @@ export interface IVacanca {
     descripcio: string;
     user: string;
 }
+
+export interface IUser {
+    id?: string;
+    nom: string;
+    cognom: string;
+    email: string;
+    tokenPush: string;
+    avatar: string;
+}

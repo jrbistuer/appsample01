@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData, updateDoc } from '@angular/fire/firestore';
+import { Firestore, addDoc, collection, collectionData, deleteDoc, doc, docData, getDocs, query, updateDoc, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { IVacanca } from '../models/interfaces';
 
@@ -13,6 +13,13 @@ export class VacancesService {
   getVacances(): Observable<IVacanca[]> {
     const vacancesRef = collection(this.firestore, 'vacances');
     return collectionData(vacancesRef, { idField: 'id'}) as Observable<IVacanca[]>;
+  }
+
+  async getVacancesByUser(id: string): Promise<IVacanca[]> {
+    const q = query(collection(this.firestore, 'vacances'), where('user', '==', id));
+    const querySnapshot = await getDocs(q);
+    let vacances: IVacanca[] = querySnapshot.docs.map(doc => doc.data() as IVacanca);
+    return vacances;
   }
 
   getVacancaById(id: string): Observable<IVacanca> {

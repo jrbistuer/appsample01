@@ -26,7 +26,7 @@ export class AuthService {
 		}
 	}
 
-	getUserId() {
+	getUserId(): string {
 		return this.auth.currentUser!.uid;
 	}
 

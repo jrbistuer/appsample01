@@ -4,6 +4,7 @@ import { IVacanca } from 'src/app/models/interfaces';
 import { VacancesService } from 'src/app/services/vacances.service';
 import { ModalPage } from '../modal/modal.page';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -17,51 +18,20 @@ export class HomePage {
   constructor(
     private vacancesService: VacancesService,
     private cd: ChangeDetectorRef,
-    private alertCtrl: AlertController,
     private modalCtrl: ModalController,
+    private router: Router,
     private authService: AuthService) {
-    this.vacancesService.getVacances().subscribe(res => {
+  }
+
+  ionViewWillEnter() {
+    this.vacancesService.getVacancesByUser(this.authService.getUserId()).then(res => {
       this.vacances = res;
       this.cd.detectChanges();
     });
   }
 
   async addVacanca() {
-    const alert = await this.alertCtrl.create({
-      header: 'Add Vacanca',
-      inputs: [
-        {
-          name: 'title',
-          placeholder: 'My cool Vacanca',
-          type: 'text'
-        },
-        {
-          name: 'text',
-          placeholder: 'Learn Ionic',
-          type: 'textarea'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        }, {
-          text: 'Add',
-          handler: res => {
-            this.vacancesService.addVacanca({
-              nom: 'Test',
-              preu: 1000,
-              pais: 'Turkey',
-              descripcio: 'test',
-              user: this.authService.getUserId()
-            });
-          }
-        }
-      ]
-    });
-
-    await alert.present();
-
+    this.router.navigate(['new-vacanca']);
   }
     
   async openVacanca(Vacanca: IVacanca) {

@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>new-vacanca</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">new-vacanca</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="vacancaForm">
+
+    <ion-item fill="solid" class="ion-margin-bottom">
+			<ion-input label="Nom" labelPlacement="floating" formControlName="nom"
+      [clearInput]="true"></ion-input>
+		</ion-item>
+		<ion-item fill="solid" class="ion-margin-bottom">
+			<ion-input label="Preu" labelPlacement="floating" formControlName="preu"
+      [clearInput]="true"></ion-input>
+		</ion-item>
+    <ion-item fill="solid" class="ion-margin-bottom">
+			<ion-input label="Pais" labelPlacement="floating" formControlName="pais"
+      [clearInput]="true"></ion-input>
+		</ion-item>
+		<ion-item fill="solid" class="ion-margin-bottom">
+			<ion-input label="Descripció" labelPlacement="floating" formControlName="descripcio"
+      [clearInput]="true"></ion-input>
+		</ion-item>
+        
+    <ion-button (click)="addVacanca()">Add Vacança</ion-button>
+        
+  </form>
+  
+</ion-content>

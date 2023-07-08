@@ -20,3 +20,8 @@ export interface IUser {
     tokenPush: string;
     avatar: string;
 }
+
+export interface IUserPhoto {
+    filepath: string;
+    webviewPath?: string;
+}

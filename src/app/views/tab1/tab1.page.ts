@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Toast } from '@capacitor/toast';
 
 @Component({
   selector: 'app-tab1',
@@ -33,5 +34,11 @@ export class Tab1Page {
       this.router.navigate(['login']);
     });
   }
+
+  async showHelloToast() {
+    await Toast.show({
+      text: 'Hello!',
+    });
+  };
 
 }

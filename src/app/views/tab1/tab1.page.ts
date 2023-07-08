@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Toast } from '@capacitor/toast';
+import { UtilsService } from 'src/app/shared/utils/utils.service';
 
 @Component({
   selector: 'app-tab1',
@@ -17,7 +18,8 @@ export class Tab1Page {
   constructor(
     private auth: AuthService,
     private router: Router,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    public utils: UtilsService
   ) {}
 
   ionViewWillEnter() {

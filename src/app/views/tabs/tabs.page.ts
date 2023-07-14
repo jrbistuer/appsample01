@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PushService } from 'src/app/services/push.service';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor(private pushService: PushService) {
+    console.log('test');
+    this.pushService.initPushLogic();
+  }
 
 }

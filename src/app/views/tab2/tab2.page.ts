@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import { PhotoService } from 'src/app/services/photo.service';
 import { ActionSheetController } from '@ionic/angular';
-import { IUserPhoto } from 'src/app/models/interfaces';
+import { IUser, IUserPhoto } from 'src/app/models/interfaces';
+import { UserService } from 'src/app/services/user.service';
 
 // Call the element loader after the platform has been bootstrapped
 defineCustomElements(window);
@@ -11,17 +12,29 @@ defineCustomElements(window);
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page implements OnInit {
+export class Tab2Page {
+
+  user!: IUser;
 
   constructor(public photoService: PhotoService,
-    public actionSheetController: ActionSheetController) {}
+    public actionSheetController: ActionSheetController,
+    public userService: UserService) {}
 
-  async ngOnInit() {
-    await this.photoService.loadSaved();
+  ionViewWillEnter() {
+    this.init();
+  }
+
+  init() {
+    this.userService.getUser().then((user: IUser) => {
+      this.user = user;
+      console.log(this.user);
+    });
   }
 
   addPhotoToGallery() {
-    this.photoService.addNewToGallery();
+    this.photoService.addNewToGallery().then(() => {
+      this.init();
+    });
   }
 
   public async showActionSheet(photo: IUserPhoto, position: number) {
@@ -32,7 +45,6 @@ export class Tab2Page implements OnInit {
         role: 'destructive',
         icon: 'trash',
         handler: () => {
-          this.photoService.deletePicture(photo, position);
         }
       }, {
         text: 'Cancel',

@@ -64,7 +64,7 @@ export class RegisterPage implements OnInit {
         cognom: this.credentials.get('cognom')?.value,
         email: this.credentials.get('email')?.value,
         tokenPush: '',
-        avatar: ''
+        avatar: { storageBase64: '', storagePath: '' }
       }
 
       await this.userService.addUser(myUser);

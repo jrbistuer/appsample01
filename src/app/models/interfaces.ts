@@ -18,7 +18,12 @@ export interface IUser {
     cognom: string;
     email: string;
     tokenPush: string;
-    avatar: string;
+    avatar: IUserAvatar;
+}
+
+export interface IUserAvatar {
+    storagePath: string;
+    storageBase64: string;
 }
 
 export interface IUserPhoto {

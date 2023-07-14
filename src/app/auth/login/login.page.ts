@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
 		await loading.dismiss();
 
 		if (user) {
-			this.userService.getUserById(this.authService.getUserId()).then((myUser) => {
+			this.userService.getUser().then((myUser) => {
 				console.log('myUser', myUser);
 				this.router.navigateByUrl('/', { replaceUrl: true });
 				});

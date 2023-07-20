@@ -13,4 +13,14 @@
     </ion-toolbar>
   </ion-header>
 
+  <div #divMap style="width:100%; height:550px; margin-bottom: 15px" id="divMap"></div>
+
+  <ion-item id="rounded">
+    <ion-input type="text" label="Dirección" [(ngModel)]="address"></ion-input>
+  </ion-item>
+
+  <ion-button (click)="getCoordinatesByAddress()">Nueva Dirección</ion-button>
+
+  <ion-button (click)="initPage()">Mi Dirección</ion-button>
+
 </ion-content>

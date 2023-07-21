@@ -5,6 +5,7 @@ import { VacancesService } from 'src/app/services/vacances.service';
 import { ModalPage } from '../modal/modal.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { ShareService } from 'src/app/services/share.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ export class HomePage {
     private cd: ChangeDetectorRef,
     private modalCtrl: ModalController,
     private router: Router,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private shareService: ShareService) {
   }
 
   ionViewWillEnter() {
@@ -43,6 +45,11 @@ export class HomePage {
     });
 
     await modal.present();
+  }
+
+  async shareVacanca(vacanca: IVacanca) {
+    const res = await this.shareService.shareVacanca(vacanca);
+    console.log(res);
   }
 
 }

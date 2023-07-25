@@ -30,6 +30,10 @@ export class AuthService {
 		return this.auth.currentUser!.uid;
 	}
 
+	getUser() {
+		return this.auth.currentUser;
+	}
+
 	logout() {
 		return signOut(this.auth);
 	}

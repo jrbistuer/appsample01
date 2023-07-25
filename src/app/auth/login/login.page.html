@@ -8,13 +8,13 @@
 
 	<form (ngSubmit)="login()" [formGroup]="credentials" *ngIf="credentials">
 		<ion-item fill="solid" class="ion-margin-bottom">
-			<ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+			<ion-input type="email" labelPlacement="floating" label="Email" formControlName="email"></ion-input>
 			<ion-note slot="error" *ngIf="(email!.dirty || email!.touched) && email!.errors"
 				>Email is invalid</ion-note
 			>
 		</ion-item>
 		<ion-item fill="solid" class="ion-margin-bottom">
-			<ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+			<ion-input type="password" labelPlacement="floating" label="Password" formControlName="password"></ion-input>
 			<ion-note slot="error" *ngIf="(password!.dirty || password!.touched) && password!.errors"
 				>Password needs to be 6 characters</ion-note
 			>
@@ -25,6 +25,35 @@
 		<hr style="margin: 50px 0;"/>
 
 		<div style="text-decoration: underline;" [routerLink]="'/register'">register</div>
+		<div style="text-decoration: underline; margin-top: 15px;" (click)="setOpen(true)">has oblidat la pwd?</div>
 	</form>
+
+
+	<ion-modal [isOpen]="isModalOpen">
+		<ng-template>
+		  <ion-header>
+			<ion-toolbar>
+			  <ion-title>Canvia la pwd</ion-title>
+			  <ion-buttons slot="end">
+				<ion-button (click)="setOpen(false)">Tanca</ion-button>
+			  </ion-buttons>
+			</ion-toolbar>
+		  </ion-header>
+		  <ion-content class="ion-padding">
+			<p>
+				A quin correu vols que enviem el link de canvi de pwwd?
+			</p>
+			<form (ngSubmit)="recoverPwd()" [formGroup]="recoverForm">
+				<ion-item fill="solid" class="ion-margin-bottom">
+					<ion-input type="text" labelPlacement="floating" label="E-Mail" formControlName="email"></ion-input>
+					<ion-note slot="error" *ngIf="(email!.dirty || email!.touched) && email!.errors">
+						Email is invalid
+					</ion-note>
+				</ion-item>
+				<ion-button type="submit" expand="block">Envia</ion-button>
+			</form>
+		  </ion-content>
+		</ng-template>
+	  </ion-modal>
 
 </ion-content>

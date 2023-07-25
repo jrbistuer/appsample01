@@ -4,6 +4,8 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { Auth, sendPasswordResetEmail } from '@angular/fire/auth';
+import { UtilsService } from 'src/app/shared/utils/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -13,14 +15,17 @@ import { UserService } from 'src/app/services/user.service';
 export class LoginPage implements OnInit {
 
 	credentials!: FormGroup;
+	recoverForm!: FormGroup;
+	isModalOpen = false;
 
 	constructor(
 		private fb: FormBuilder,
 		private loadingController: LoadingController,
-		private alertController: AlertController,
+		private utilsService: UtilsService,
 		private authService: AuthService,
 		private userService: UserService,
-		private router: Router
+		private router: Router,
+		private auth: Auth
 	) {}
 
 	// Easy access for form fields
@@ -37,6 +42,9 @@ export class LoginPage implements OnInit {
 			email: ['', [Validators.required, Validators.email]],
 			password: ['', [Validators.required, Validators.minLength(6)]]
 		});
+		this.recoverForm = this.fb.group({
+			email: ['', [Validators.required, Validators.email]]
+		});
 	}
 
 	async login() {
@@ -52,16 +60,30 @@ export class LoginPage implements OnInit {
 				this.router.navigateByUrl('/', { replaceUrl: true });
 				});
 		} else {
-			this.showAlert('Login failed', 'Please try again!');
+			this.utilsService.showAlert('Login failed', 'Please try again!');
 		}
 	}
 
-	async showAlert(header: string, message: string) {
-		const alert = await this.alertController.create({
-			header,
-			message,
-			buttons: ['OK']
-		});
-		await alert.present();
+	setOpen(isOpen: boolean) {
+		this.isModalOpen = isOpen;
 	}
+
+	recoverPwd() {
+		if(this.recoverForm.valid) {
+			sendPasswordResetEmail(this.auth, this.recoverForm.controls['email'].value).then((res) => {
+				console.log(res);
+				const endFunction = () => {
+					this.isModalOpen = false;
+					return false;
+				};
+				this.utilsService.showAlert('', 'Missatge enviat!', endFunction);	
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				this.utilsService.showAlert(errorCode, errorMessage);				
+			});
+		}
+	}
+
 }

@@ -24,7 +24,7 @@
 
     <p>Naixament</p>
 
-    <p>Canviar password</p>
+    <p (click)="setOpen(true)">Canviar password</p>
 
   </div>
 
@@ -33,5 +33,40 @@
       <ion-icon name="camera"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  <ion-modal [isOpen]="isModalOpen">
+		<ng-template>
+		  <ion-header>
+			<ion-toolbar>
+			  <ion-title>Canvia la pwd</ion-title>
+			  <ion-buttons slot="end">
+				<ion-button (click)="setOpen(false)">Tanca</ion-button>
+			  </ion-buttons>
+			</ion-toolbar>
+		  </ion-header>
+		  <ion-content class="ion-padding">
+			<p>
+				A quin correu vols que enviem el link de canvi de pwwd?
+			</p>
+			<form (ngSubmit)="canviarPwd()" [formGroup]="canviPwdForm">
+				<ion-item fill="solid" class="ion-margin-bottom">
+					<ion-input type="text" labelPlacement="floating" label="Password" formControlName="pwd"></ion-input>
+					<div class="formerr" *ngIf="(pwd!.dirty || pwd!.touched) && pwd!.errors">
+						Password is invalid
+					</div>
+          </ion-item>
+          <ion-item fill="solid" class="ion-margin-bottom">
+            <ion-input type="text" labelPlacement="floating" label="Repeteix Password" formControlName="repeteixPwd"></ion-input>
+					<div class="formerr" *ngIf="(repeteixPwd!.dirty || repeteixPwd!.touched) && repeteixPwd!.errors">
+						Password is different
+          </div>
+        </ion-item>
+				<ion-button type="submit" expand="block">Envia</ion-button>
+			</form>
+		  </ion-content>
+		</ng-template>
+	  </ion-modal>
+
+
 
 </ion-content>

@@ -11,6 +11,7 @@ export class UserService {
   constructor(private firestore: Firestore, private authService: AuthService) { }
 
   async getUser(): Promise<IUser> {
+    console.log(this.authService.getUserId());
     const q = query(collection(this.firestore, "users"), where("id", "==", this.authService.getUserId()));
     const querySnapshot = await getDocs(q);
     let myUser: IUser[] = querySnapshot.docs.map(doc => doc.data() as IUser);

@@ -7,7 +7,36 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:593644422499:android:74889ae6f5ed8ead487f56",
+        "mobilesdk_app_id": "1:593644422499:android:e5d7c856d35d21bb487f56",
+        "android_client_info": {
+          "package_name": "com.jrbistuer.samplecifo05"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "593644422499-84mhav3lmtqnlfoh3k0ck059g1pup9fv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXimxHdaJCKvBETaywCctWoteJ18qBnn8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "593644422499-84mhav3lmtqnlfoh3k0ck059g1pup9fv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593644422499:android:20281f71d4949d48487f56",
         "android_client_info": {
           "package_name": "io.ionic.starter"
         }
